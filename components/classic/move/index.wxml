@@ -1,0 +1,6 @@
+<!--首页电影-->
+<view hidden="{{hidden}}" class="classic-container">
+	<image class="class-img" src="{{img}}" />
+	<image class="tag" src="image/movie@tag.png" />
+	<image class="content">{{content}}</image>
+</view>
