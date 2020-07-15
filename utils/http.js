@@ -10,11 +10,10 @@ const tips = {
 }
 
 class HTTP {
-  request({
-    url,
-    data = {},
-    method = "GET"
-  }) {
+  constructor(){
+    
+  }
+  request({url,data = {},method = "GET"}) {
     return new Promise((resolve, reject) => {
       this._request(url, resolve, reject, data, method)
     })
@@ -58,4 +57,4 @@ class HTTP {
   }
 }
 
-export {HTTP}
+export { HTTP }
