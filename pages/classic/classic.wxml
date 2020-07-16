@@ -13,5 +13,6 @@
 		</view>
 	</view>
 	<!-- 首页电影封面 -->
-  <v-movie hideen="{{classic.type != 100}}" img="{{classic.image}}" content="{{classic.content}}" />
+  <v-movie hideen="{{classic.type != 100}}"     img="{{classic.image}}" content="{{classic.content}}" />
+	<v-navi class="navi" title="{{classic.title}}" first="{{first}}" latest="{{latest}}" catch:left="onNext" catch:right="onPrevious" />
 </view>

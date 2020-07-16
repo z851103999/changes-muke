@@ -4,49 +4,106 @@ class ClassicModel extends HTTP {
   constructor() {
     super()
   }
-
+  prefix = 'classic'
+  /**
+   * 获取最新一期
+   * @param {*} sCallback 
+   */
   getLatest(sCallback) {
     this.request({
       url: 'classic/latest',
       success: (res) => {
+        // 缓存数据
         let key = this._getKey
         wx.setStorageSync(key, res)
-        this._setLatestIndex(res.index) //设置缓存
+        //设置缓存
+        this._setLatestIndex(res.index)
         sCallback(res)
       }
     })
   }
-
-  getClassic(index,nestOrPrevious,sCallback){
-    let key = nextOrPrevious == 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
+  /**
+   * 获取当前一期的下一期
+   * @param {*} index 期刊号
+   * @param {*} nestOrPrevious next
+   * @param {*} sCallback 
+   */
+  getClassic(index, nestOrPrevious, sCallback) {
+    let key = nestOrPrevious == 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
+    console.log(key)
     let classic = wx.getStorageInfoSync(key)
-    if(!classic){
+    console.log(classic)
+    if (!classic) {
       this.request({
-        url:`classic/${index}/${nestOrPrevious}`,
-        success:(res)=>{
+        url: `classic/${index}/${nestOrPrevious}`,
+        success: (res) => {
           wx.setStorageSync(this._getKey(res.index), res)
           sCallback(res)
         }
       })
     }
   }
-
-  //设置缓存（设置latest的长度）
+  /**
+   * 判断是否第一个
+   * @param {*} index 期刊号，是否是第一个
+   */
+  isFirst(index) {
+    return index === 1 ? true : false
+  }
+  /**
+   * 判断是否是最后一个
+   * @param {*} index 期刊号
+   */
+  isLatest(index) {
+    let latestIndex = this._getLatestIndex()
+    return latestIndex = index ? true : false
+  }
+  /**
+   * 设置缓存（设置latest的长度）
+   * @param {*} index 期刊号
+   */
   _setLatestIndex(index) {
     wx.setStorageSync('latest', index)
   }
-  //读取缓存
+  /**
+   * 获取缓存
+   */
   _getLatestIndex() {
     let index = wx.getStorageSync('latest')
     return index
   }
-  //缓存每一页数据
+  /**
+   * 获取缓存里每一页的数据
+   * @param {*} partKey 
+   */
   _getKey(partKey) {
-    let key = this.prefix + '-' + parKey
+    let key = this.prefix + '-' + partKey
     return key
+  }
+/**
+ * 获取我喜欢的书籍列表
+ * @param {*} success 
+ */
+  getMyFavour(success) {
+    let params = {
+      url: 'classic/favour',
+      success: success
+    }
+    this.request(params)
+  }
+/**
+ * 我喜欢的详情
+ * @param {*} cid id必填整数
+ * @param {*} type 类型号 100，200，300 电影音乐句子
+ * @param {*} success 
+ */
+  getById(cid,type,success){
+    let params = {
+      url:'classic/' + type + '/' + cid,
+      success:success
+    }
+    this.request(params)
   }
 }
 
-export {
-  ClassicModel
-}
+export { ClassicModel }

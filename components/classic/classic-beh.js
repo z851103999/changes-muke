@@ -5,22 +5,22 @@
  * @params hidden 控制组件内部隐藏
  */
 const classicBeh = Behavior({
-  properties:{
-    img:String,
-    content:String,
-    hidden:Boolean,
+  properties: {
+    img: String,
+    content: String,
+    hidden: Boolean,
   },
-  lifetimes:function(){
-    attached:{
+  lifetimes: function () {
+    attached: {
 
     }
   },
-  data:{
+  data: {
 
   },
-  methods:{
+  methods: {
 
   }
 })
 
-export {classicBeh}
+export { classicBeh }

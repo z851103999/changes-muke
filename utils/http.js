@@ -1,6 +1,4 @@
-import {
-  config
-} from '../config';
+import { config } from '../config';
 
 //错误提示信息
 const tips = {
@@ -10,34 +8,34 @@ const tips = {
 }
 
 class HTTP {
-  constructor(){
-    
-  }
-  request({url,data = {},method = "GET"}) {
-    return new Promise((resolve, reject) => {
-      this._request(url, resolve, reject, data, method)
-    })
-  }
+  constructor() {}
 
-  //get请求
-  _request(url, resolve, reject, data = {}, method = "GET") {
+  request(params){
+    if(!params.metheod){
+      params.metheod = 'GET'
+    }
     wx.request({
-      url: config.api_base_url + url,
-      method: method,
-      data: data,
-      header: {
-        'content-type': 'application/json',
-        'appkey': config.appkey
+      url: config.api_base_url + params.url,
+      method:params.method,
+      data:params.data,
+      header:{
+        'contentt-type':'application/json',
+        'appkey':config.appkey
       },
-      success: (res) => {
-        const code = res.statusCode.toString()
-        if (code.startsWith('2')) {
-          resolve(res.data)
-        } else {
-          reject()
-          const error_code = res.data.error_code
+      success:(res)=>{
+        let code = res.statusCode.toString()
+        if(code.startsWith('2')){
+          //返回参数
+          params.success && params.success(res.data)
+        }else{
+          //appkey 错误
           this._show_error(error_code)
         }
+      },
+      fail:(err)=>{
+        //断网
+        this._show_error(1)
+        console.log(err)
       }
     })
   }
