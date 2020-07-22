@@ -13,12 +13,11 @@ class ClassicModel extends HTTP {
     this.request({
       url: 'classic/latest',
       success: (res) => {
-        // 缓存数据
+        sCallback(res)
+        this._setLatestIndex(res.index)
         let key = this._getKey
         wx.setStorageSync(key, res)
-        //设置缓存
-        this._setLatestIndex(res.index)
-        sCallback(res)
+
       }
     })
   }
@@ -29,10 +28,8 @@ class ClassicModel extends HTTP {
    * @param {*} sCallback 
    */
   getClassic(index, nestOrPrevious, sCallback) {
-    let key = nestOrPrevious == 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
-    console.log(key)
-    let classic = wx.getStorageInfoSync(key)
-    console.log(classic)
+    let key = nestOrPrevious === 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
+    let classic = wx.getStorageSync(key)
     if (!classic) {
       this.request({
         url: `classic/${index}/${nestOrPrevious}`,
@@ -41,6 +38,9 @@ class ClassicModel extends HTTP {
           sCallback(res)
         }
       })
+      // 缓存中找到读取
+    } else {
+      sCallback(classic)
     }
   }
   /**
@@ -56,7 +56,7 @@ class ClassicModel extends HTTP {
    */
   isLatest(index) {
     let latestIndex = this._getLatestIndex()
-    return latestIndex = index ? true : false
+    return latestIndex == index ? true : false
   }
   /**
    * 设置缓存（设置latest的长度）
@@ -80,10 +80,10 @@ class ClassicModel extends HTTP {
     let key = this.prefix + '-' + partKey
     return key
   }
-/**
- * 获取我喜欢的书籍列表
- * @param {*} success 
- */
+  /**
+   * 获取我喜欢的书籍列表
+   * @param {*} success 
+   */
   getMyFavour(success) {
     let params = {
       url: 'classic/favour',
@@ -91,16 +91,16 @@ class ClassicModel extends HTTP {
     }
     this.request(params)
   }
-/**
- * 我喜欢的详情
- * @param {*} cid id必填整数
- * @param {*} type 类型号 100，200，300 电影音乐句子
- * @param {*} success 
- */
-  getById(cid,type,success){
+  /**
+   * 我喜欢的详情
+   * @param {*} cid id必填整数
+   * @param {*} type 类型号 100，200，300 电影音乐句子
+   * @param {*} success 
+   */
+  getById(cid, type, success) {
     let params = {
-      url:'classic/' + type + '/' + cid,
-      success:success
+      url: 'classic/' + type + '/' + cid,
+      success: success
     }
     this.request(params)
   }

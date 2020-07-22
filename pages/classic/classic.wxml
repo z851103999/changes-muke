@@ -2,7 +2,7 @@
 <view class="container">
 	<view class="header">
 		<!-- 日期 -->
-		<v-essay class="episode" index="{{classic.index}}"></v-essay>
+		<v-episode class="episode" index="{{classic.index}}"></v-episode>
 		<view class="like-container">
 			<!-- 点赞 -->
 			<v-like class="like" bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}"></v-like>
@@ -13,6 +13,23 @@
 		</view>
 	</view>
 	<!-- 首页电影封面 -->
-  <v-movie hideen="{{classic.type != 100}}"     img="{{classic.image}}" content="{{classic.content}}" />
-	<v-navi class="navi" title="{{classic.title}}" first="{{first}}" latest="{{latest}}" catch:left="onNext" catch:right="onPrevious" />
+  <v-movie hidden="{{classic.type != 100}}" 
+	         img="{{classic.image}}" 
+					 content="{{classic.content}}" />
+	<!-- 首页音乐 -->
+	<v-music wx:if="{{classic.type == 200}}" 
+	         img="{{classic.image}}" 
+					 content="{{classic.content}}" 
+					 src="{{classic.url}}" />
+  <!-- 首页句子 -->
+	<v-essay hidden="{{classic.type != 300}}" 
+	         img="{{classic.image}}" 
+					 content="{{classic.content}}" />				 
+<!-- 首页切换按钮 -->
+	<v-navi class="navi" 
+	        title="{{classic.title}}" 
+					first="{{first}}" 
+					latest="{{latest}}" 
+					catch:left="onNext" 
+					catch:right="onPrevious" />
 </view>

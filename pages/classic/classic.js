@@ -22,9 +22,9 @@ Page({
   onLoad: function (options) {
     classicModel.getLatest(res => {
       this.setData({
-          classic: res,
-          likeCount: res.fav_nums,
-          likeStatus: res.like_status
+        classic: res,
+        likeCount: res.fav_nums,
+        likeStatus: res.like_status
       })
     })
   },
@@ -33,7 +33,6 @@ Page({
    * @param {*} event 回传值
    */
   onLike(event) {
-    console.log(event)
     let behavior = event.detail.behavior
     likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
   },
@@ -42,9 +41,7 @@ Page({
    * @param {*} nextOrPrevious 上一页，还是下一页
    */
   _updateClassic(nextOrPrevious) {
-    // console.log(nextOrPrevious)
-    let index = this.data.classic.index
-    // console.log(index)
+    const index = this.data.classic.index
     classicModel.getClassic(index, nextOrPrevious, (res) => {
       this._getLikeStatus(res.id, res.type)
       this.setData({
@@ -59,7 +56,7 @@ Page({
    * @param artID 电影对象ID
    * @param category 点赞类型
   */
-  _getLikeStatus(artID, category) {
+  _getLikeStatus: function (artID, category) {
     likeModel.getClassicLikeStatus(artID, category, (res) => {
       this.setData({
         likeCount: res.fav_nums,

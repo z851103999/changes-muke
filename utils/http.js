@@ -23,16 +23,19 @@ class HTTP {
         'appkey':config.appkey
       },
       success:(res)=>{
-        let code = res.statusCode.toString()
-        if(code.startsWith('2')){
+        const code = res.statusCode.toString()
+        const startChar = code.charAt(0)
+        if(startChar == '2'){
           //返回参数
           params.success && params.success(res.data)
         }else{
           //appkey 错误
+          params.error && params.error(res)
           this._show_error(error_code)
         }
       },
       fail:(err)=>{
+        params.fail && params.fail(err)
         //断网
         this._show_error(1)
         console.log(err)

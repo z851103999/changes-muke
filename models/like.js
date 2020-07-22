@@ -9,7 +9,8 @@ class LikeModel extends HTTP {
    * **/
 
   like(behavior, artID, category) {
-    let url = behavior = 'like' ? 'like' : 'like/cancel'
+    let url = behavior === 'like' ? 'like' : 'like/cancel'
+    console.log(url)
     this.request({
       url: url,
       method: 'POST',
@@ -31,10 +32,10 @@ class LikeModel extends HTTP {
    */
   getClassicLikeStatus(artID, category, sCallback) {
     this.request({
-      utl: `classic/${category}/${artID}/faour`,
-      success: sCallback
+        url: `classic/${category}/${artID}/favor`,
+        success: sCallback
     })
-  }
+}
 }
 
 export { LikeModel }
