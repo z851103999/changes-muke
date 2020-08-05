@@ -20,23 +20,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   bookModel.getHotList((data)=>{
-     console.log(data)
-     this.setData({
-       books:data
-     })
-   })
+    bookModel.getHotList()
+      .then(res => {
+        this.setData({
+          books: res
+        })
+      })
   },
 
   // 打开搜索框
   onSearching: function () {
     this.setData({
-      searching: false
+      searching: true
     })
   },
 
   // 组件回调-关闭弹窗
-  onCancel: function () {
+  onReachBottom: function () {
     this.setData({
       searching: false
     })
@@ -88,9 +88,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
 
-  },
 
   /**
    * 用户点击右上角分享

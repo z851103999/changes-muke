@@ -10,14 +10,12 @@ class ClassicModel extends HTTP {
    * @param {*} sCallback 
    */
   getLatest(sCallback) {
-    this.request({
+    return this.request({
       url: 'classic/latest',
       success: (res) => {
-        sCallback(res)
         this._setLatestIndex(res.index)
-        let key = this._getKey
-        wx.setStorageSync(key, res)
-
+        let key = this._getKey(res.index)
+        wx.setStorageSync('key', res)
       }
     })
   }
@@ -85,24 +83,19 @@ class ClassicModel extends HTTP {
    * @param {*} success 
    */
   getMyFavour(success) {
-    let params = {
-      url: 'classic/favour',
-      success: success
-    }
-    this.request(params)
+    return this.request({
+      url:'classic/favour'
+    })
   }
   /**
    * 我喜欢的详情
    * @param {*} cid id必填整数
    * @param {*} type 类型号 100，200，300 电影音乐句子
-   * @param {*} success 
    */
-  getById(cid, type, success) {
-    let params = {
-      url: 'classic/' + type + '/' + cid,
-      success: success
-    }
-    this.request(params)
+  getById(cid, type) {
+    return this.request({
+      url:'classic/' + type + '/' + cid
+    })
   }
 }
 

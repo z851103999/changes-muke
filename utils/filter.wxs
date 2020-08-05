@@ -1,15 +1,16 @@
-const format = function (text){
+var format = function(text){
     if(!text){
         return
     }
-    const reg = getRegExp('\\\\n','g')
-    return text.replace(reg,'\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+    var reg = getRegExp('\\\\n','g')
+    return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
 }
 
-const limit = function (array,length){
-    return array.slice(0,length)
+var limit = function(array, length){
+    return array.slice(0, length)
 }
 
 module.exports = {
-    format,limit
+    format:format,
+    limit:limit
 }

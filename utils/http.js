@@ -8,49 +8,45 @@ const tips = {
 }
 
 class HTTP {
-  constructor() {}
-
-  request(params){
-    if(!params.metheod){
-      params.metheod = 'GET'
-    }
+  constructor() { }
+  request({ url, data = {}, method = 'GET' }) {
+    return new Promise((resolve, reject) => {
+      this._request(url, resolve, reject, data, method)
+    })
+  }
+  _request(url, resolve, reject, data = {}, method = 'GET') {
     wx.request({
-      url: config.api_base_url + params.url,
-      method:params.method,
-      data:params.data,
-      header:{
-        'contentt-type':'application/json',
-        'appkey':config.appkey
+      url: config.api_base_url + url,
+      method: method,
+      data: data,
+      header: {
+        'content-type': 'application/json',
+        'appkey': config.appkey
       },
-      success:(res)=>{
+      success: (res) => {
         const code = res.statusCode.toString()
-        const startChar = code.charAt(0)
-        if(startChar == '2'){
-          //返回参数
-          params.success && params.success(res.data)
-        }else{
-          //appkey 错误
-          params.error && params.error(res)
+        if (code.startsWith('2')) {
+          resolve(res.data)
+        } else {
+          reject()
+          const error_code = res.data.error_code
           this._show_error(error_code)
         }
       },
-      fail:(err)=>{
-        params.fail && params.fail(err)
-        //断网
+      fail: (err) => {
+        reject()
         this._show_error(1)
-        console.log(err)
       }
     })
   }
 
-  //通用错误提示：_代表:私有方法
   _show_error(error_code) {
     if (!error_code) {
       error_code = 1
     }
     const tip = tips[error_code]
     wx.showToast({
-      title: tip ? tip : tip[1],
+      title: tip ? tip : tips[1],
       icon: 'none',
       duration: 2000
     })

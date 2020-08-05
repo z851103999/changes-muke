@@ -10,6 +10,12 @@ Component({
     //getUserInfo获取用户信息 share分享
     openType: {
       type: String
+    },
+    imageSrc: {
+      type: String
+    },
+    bindgetuserinfo: {
+      type: String
     }
   },
 

@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{!searching}}">
 	<view class="container">
 		<view class="header">
 			<view bindtap="onSearching" class="box">
@@ -8,12 +8,12 @@
 		</view>
 	</view>
 	<view class="sub-container">
-		<image class="head-img" src="/images/book/quality.png"></image>
+		<image class="head-img" src="/images/book/quality.png" />
 		<view class="books-container">
 			<block wx:for="{{books}}" wx:key="id">
-				<v-book book="{{item}}" class="book"></v-book>
+				<v-book book="{{item}}" ></v-book>
 			</block>
 		</view>
 	</view>
 </view>
-<v-search></v-search>
+<v-search wx:if="{{searching}}" more="{{more}}" bind:cacel="onCancel" />
