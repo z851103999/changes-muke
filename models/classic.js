@@ -25,22 +25,39 @@ class ClassicModel extends HTTP {
    * @param {*} nestOrPrevious next
    * @param {*} sCallback 
    */
+  // getClassic(index, nestOrPrevious, sCallback) {
+  //   let key = nestOrPrevious === 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
+  //   let classic = wx.getStorageSync(key)
+  //   if (!classic) {
+  //     this.request({
+  //       url: `classic/${index}/${nestOrPrevious}`,
+  //       success: (res) => {
+  //         wx.setStorageSync(this._getKey(res.index), res)
+  //         sCallback(res)
+  //       }
+  //     })
+  //     // 缓存中找到读取
+  //   } else {
+  //     sCallback(classic)
+  //   }
+  // }
+
   getClassic(index, nestOrPrevious, sCallback) {
     let key = nestOrPrevious === 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
     let classic = wx.getStorageSync(key)
     if (!classic) {
       this.request({
-        url: `classic/${index}/${nestOrPrevious}`,
-        success: (res) => {
-          wx.setStorageSync(this._getKey(res.index), res)
-          sCallback(res)
-        }
+        url: `classic/${index}/${nestOrPrevious}`
+      }).then(res=>{
+        wx.setStorageSync(this._getKey(res.index),res)
       })
       // 缓存中找到读取
     } else {
       sCallback(classic)
     }
   }
+
+
   /**
    * 判断是否第一个
    * @param {*} index 期刊号，是否是第一个
@@ -84,7 +101,7 @@ class ClassicModel extends HTTP {
    */
   getMyFavour(success) {
     return this.request({
-      url:'classic/favour'
+      url:'classic/favor'
     })
   }
   /**

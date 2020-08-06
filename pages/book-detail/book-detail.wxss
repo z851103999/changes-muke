@@ -74,6 +74,9 @@
 .comment-container>v-tag:nth-child(2)>view {
     background-color: #eefbff;
 }
+.comment-container>v-tag>view{
+    margin-right: 20rpx;
+}
 
 .detail-container{
     width: 100%;

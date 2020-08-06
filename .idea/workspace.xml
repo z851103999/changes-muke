@@ -2,29 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7eb6af1a-370d-4e18-8408-ad0eb6088461" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/models/keyword.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/book-detail/book-detail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/book-detail/book-detail.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/book-detail/book-detail.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/book-detail/book-detail.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/filter.wxs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/behaviors/pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/behaviors/pagination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/book/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/book/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/book/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/image-button/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/image-button/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/image-button/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/image-button/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/search/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/search/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/search/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/book.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/book.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/classic.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/classic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/like.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/like.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/book/book.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/book.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/book/book.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book/book.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/classic/classic.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/classic/classic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/keyword.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/keyword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/book-detail/book-detail.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book-detail/book-detail.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/book-detail/book-detail.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/book-detail/book-detail.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/my.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/my.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/my.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/my.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/my.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/my.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/my.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/my.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/http.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,13 +43,19 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\85110\Documents\GitHub\changes-muke\pages\my\images" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -71,6 +67,9 @@
       <updated>1596524141234</updated>
       <workItem from="1596524142358" duration="1668000" />
       <workItem from="1596526348626" duration="16318000" />
+      <workItem from="1596620391790" duration="125000" />
+      <workItem from="1596620524341" duration="11024000" />
+      <workItem from="1596675235156" duration="6315000" />
     </task>
     <servers />
   </component>
@@ -86,13 +85,18 @@
       <screen x="1440" y="23" width="2560" height="1057" />
     </state>
     <state x="2177" y="173" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.798/1440.23.2560.1057@1440.23.2560.1057" timestamp="1596555676055" />
-    <state x="2817" y="150" key="SettingsEditor" timestamp="1596555034429">
-      <screen x="1440" y="23" width="2560" height="1057" />
+    <state x="259" y="157" width="998" height="708" key="SettingsEditor" timestamp="1596620515722">
+      <screen x="0" y="0" width="2560" height="1040" />
     </state>
+    <state x="259" y="157" width="998" height="708" key="SettingsEditor/0.0.2560.1040@0.0.2560.1040" timestamp="1596620515722" />
     <state x="2817" y="150" key="SettingsEditor/0.23.1440.798/1440.23.2560.1057@1440.23.2560.1057" timestamp="1596555034429" />
     <state x="266" y="161" key="Vcs.Push.Dialog.v2" timestamp="1596619589583">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="266" y="161" key="Vcs.Push.Dialog.v2/0.23.1440.797@0.23.1440.797" timestamp="1596619589583" />
+    <state x="1458" y="256" key="run.anything.popup" timestamp="1596700688973">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1458" y="256" key="run.anything.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1596700688973" />
   </component>
 </project>

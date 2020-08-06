@@ -1,29 +1,19 @@
-// components/search/index.js
-import {
-    KeywordModel
-} from '../../models/keyword.js'
-
-import {
-    BookModel
-} from '../../models/book.js'
-
-import {
-    paginationBev
-} from '../behaviors/pagination.js'
-
-const keywordModel = new KeywordModel()
-const bookModel = new BookModel()
+// components/search/search-cmp.js
+import {HTTP} from '../../utils/http.js'
+import {KeywordModel} from 'keyword.js'
+import { paginationBev} from '../behaviors/pagination.js'
+let http = new HTTP()
+let keyModel = new KeywordModel()
 
 Component({
     /**
      * 组件的属性列表
      */
-    behaviors: [paginationBev],
+    behaviors:[paginationBev],
     properties: {
-        more: {
-            type: String,
-            observer: 'loadMore'
-            // true, true, true,
+        more:{
+            type:String,
+            observer:'_loadMore'
         }
     },
 
@@ -31,111 +21,98 @@ Component({
      * 组件的初始数据
      */
     data: {
-        historyWords: [],
-        hotWords: [],
-        searching: false,
-        q: '',
-        loading: false,
-        loadingCenter: false
+        // start:0,
+        // count:20,
+        historyKeys:[],
+        hotKeys:[],
+        finished:false,
+        q:'',
+        loading:false,
+        loadingCenter:false
     },
 
-    lifetimes() {
-        attached:{
+    attached:function(){
+        this.setData({
+            historyKeys: keyModel.getHistory()
+        })
+        keyModel.getHot((data)=>{
             this.setData({
-                historyWords: keywordModel.getHistory()
+                hotKeys:data.hot
             })
-
-            keywordModel.getHot().then(res => {
-                this.setData({
-                    hotWords: res.hot
-                })
-            })
-        }
+        })
     },
-
 
     /**
      * 组件的方法列表
+     *
      */
     methods: {
-        loadMore() {
-            if (!this.data.q) {
+        _loadMore:function(){
+            if (!this.data.q){
                 return
             }
-            if (this.isLocked()) {
+            let hasMore = this.hasMore()
+            if(!hasMore){
                 return
             }
-            if (this.hasMore()) {
-                this.locked()
-                bookModel.search(this.getCurrentStart(), this.data.q)
-                    .then(res => {
-                        this.setMoreData(res.books)
-                        this.unLocked()
-                    }, () => {
-                        this.unLocked()
+            this.setData({
+                loading:true
+            })
+            http.request({
+                url: 'book/search?summary=1',
+                data: {
+                    q: this.data.q,
+                    start: this.getCurrentStart()
+                },
+                success: (data) => {
+                    this.setMoreData(data.books)
+                    this.setData({
+                        loading:false
                     })
-                // 死锁
-            }
-        },
-
-
-        onCancel(event) {
-            this.initialize()
-            this.triggerEvent('cancel', {}, {})
-        },
-
-        onDelete(event) {
-            this.initialize()
-            this._closeResult()
-        },
-
-        onConfirm(event) {
-            this._showResult()
-            this._showLoadingCenter()
-            // this.initialize()
-            const q = event.detail.value || event.detail.text
-            this.setData({
-                q
-            })
-            bookModel.search(0, q)
-                .then(res => {
-                    this.setMoreData(res.books)
-                    this.setTotal(res.total)
-                    keywordModel.addToHistory(q)
-                    this._hideLoadingCenter()
-                })
-        },
-
-        _showLoadingCenter() {
-            this.setData({
-                loadingCenter: true
+                }
             })
         },
 
-        _hideLoadingCenter() {
+        onCancel:function(event){
+            this.triggerEvent('cancel',{},{})
+        },
+
+        onDelete:function(event){
             this.setData({
-                loadingCenter: false
+                finished:false,
+                empty:false,
+                q:''
             })
         },
 
-        _showResult() {
+        onConfirm:function(event){
+            // 首先切换状态，保持客户端流畅
             this.setData({
-                searching: true
+                finished: true,
+                loadingCenter:true
             })
-        },
 
-        _closeResult() {
-            this.setData({
-                searching: false,
-                q: ''
+            this.initPagination()
+
+            let q = event.detail.value || event.detail.text
+
+            http.request({
+                url:'book/search?summary=1',
+                data:{
+                    q:q,
+                    start: this.getCurrentStart()
+                },
+                success:(data)=>{
+                    if(!(data.books==false)){
+                        keyModel.addToHistory(q)
+                    }
+                    this.setMoreData(data.books)
+                    this.setData({
+                        q:q,
+                        loadingCenter:false
+                    })
+                }
             })
         }
-
-        // onReachBottom(){
-        //   console.log(123123)
-        // }
-
-        // scroll-view | Page onReachBottom
-
     }
 })
